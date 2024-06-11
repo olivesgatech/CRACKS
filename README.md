@@ -17,6 +17,17 @@ Crowdsourcing annotations has created a paradigm shift in the availability of la
 
 **Self-Supervised Experiments**
 
+1. Go to the **ssl** directory
+2. Train the backbone network with SimCLR loss function and object crops using main_supcon.py\
+a) An example of a script would be: \
+python main_supcon.py --dataset 'Fault' --model 'resnet18' --batch_size 64
+3. Attach the segmentation head of choice and freeze the backbone network with the weights from the previous step \
+a) Set the annotator folder that you want to finetune your segmentation head with.
+b) Set the path to the model checkpoint from the previous step
+
+python main_seismic_semantic.py --dataset 'Fault' --epochs 50 --batch_size 8 --frozen_weights 1 --annotator 'novice01' --model 'resnet18' --ckpt './save/SupCon/Fault_Strip_models/SimCLR_Fault_resnet18_lr_10_0.01_SimCLR_decay_0.0001_bsz_64_temp_0.07_trial_0/ckpt_epoch_100.pth'
+
+
 ## Links
 
 **Associated Website**: https://ghassanalregib.info/
