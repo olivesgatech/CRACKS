@@ -14,6 +14,40 @@ Crowdsourcing annotations has created a paradigm shift in the availability of la
 **Labels** The labels exist within a separate folder called Fault Segmentations.zip. This folder contains 35 directories that each correspond to the annotations associated with our 26 novices, 8 practitioners, and the single expert. The directories are named in an intuitive manner to indicate which annotator created the associated labels. Examples include novice01, practitioner2, and expert. Within each folder named by the associated annotator are the fault annotations for each seismic section that that specific annotator worked on. The label files exist in a .png format with a naming convention that indicates which seismic section from the overall volume that these labels correspond to. As discussed in the main paper, every label file has three colors that indicates confident existence of fault (blue), uncertain existence of fault (green), and confidence of the non-existence of a fault. 
 
 ## Code Usage
+**YOLOv5 Detection Experiments**
+
+1. Go to the **Detection/YOLOv5** directory
+2. Train the model with expert labels:
+```
+python train.py --img 640 --epochs 100   --batch-size 16 --cfg yolov5l.yaml --weights yolov5l.pt --name expert --data expert.yaml
+```
+3. Evaluate the trained model with 
+```
+python val.py --img 640   --batch-size 16 --weights ./runs/train/expert/weights/best.pt  --data expert.yaml
+```
+**YOLOv5 Instance Segmentation Experiments**
+
+1. Go to the **Detection/YOLOv5** directory
+2. Train the model with expert labels:
+```
+python segment/train.py --weights yolov5l-seg.pt  --epochs 100 --img 640 --data expert.yaml --name expert
+```
+3. Evaluate the trained model with 
+```
+python segment/val.py --weights ./runs/train-seg/expert/weights/best.pt  --img 640 --data expert.yaml --batch-size 16
+```
+
+**FastRCNN, RetinaNet, DETR Detection Experiments**
+
+1. Go to the **Detection/Detectron2** directory
+2. Install the Detectron 2 livrary following installation guidelines in INSTALL.md
+3. Train the model using main.py 
+```
+python main.py --data expert --output expert 
+```
+
+
+
 
 **Self-Supervised Experiments**
 
@@ -33,5 +67,8 @@ python main_seismic_semantic.py --dataset 'Fault' --epochs 50 --batch_size 8 --f
 **Associated Website**: https://ghassanalregib.info/
 
 **Code Acknowledgement**: Code draws partially from following codebases:
+
+* https://github.com/ultralytics/yolov5
+* https://github.com/facebookresearch/detectron2
 
 
