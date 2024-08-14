@@ -37,7 +37,7 @@ python segment/train.py --weights yolov5l-seg.pt  --epochs 100 --img 640 --data 
 python segment/val.py --weights ./runs/train-seg/expert/weights/best.pt  --img 640 --data expert.yaml --batch-size 16
 ```
 
-**FastRCNN, RetinaNet, DETR Detection Experiments**
+**FasterRCNN, RetinaNet, DETR Detection Experiments**
 
 1. Go to the **Detection/Detectron2** directory
 2. Install the Detectron 2 livrary following installation guidelines in INSTALL.md
