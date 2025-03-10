@@ -7,7 +7,7 @@ Crowdsourcing annotations has created a paradigm shift in the availability of la
 
 ## Dataset
 
-**Images and Labels**: https://zenodo.org/records/11559387
+**Images and Labels**: [https://zenodo.org/records/13926822](https://zenodo.org/records/13926822)
 
 **Images** The images for the full 400 images corresponding to each seismic section are placed in a folder called images.zip. Every image is named with a convention that denotes the position within the 3D seismic volume that the section is drawn from.
 
